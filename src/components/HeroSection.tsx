@@ -37,14 +37,20 @@ const HeroSection = () => {
                 opacity: 1, 
                 y: 0, 
                 rotateY: 0,
-                x: index === 0 ? -80 : index === 1 ? -40 : index === 3 ? 40 : index === 4 ? 80 : 0,
+                x: index === 0 ? -160 : index === 1 ? -80 : index === 3 ? 80 : index === 4 ? 160 : 0,
               }}
               whileHover={{ 
-                y: -20, 
-                scale: 1.05,
+                y: -30,
+                x: index === 0 ? -180 : index === 1 ? -90 : index === 3 ? 90 : index === 4 ? 180 : 0,
+                scale: 1.08,
+                rotate: index % 2 === 0 ? 3 : -3,
                 zIndex: 50,
-                rotateY: 5,
-                transition: { duration: 0.3 }
+                transition: { 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 10,
+                  mass: 0.8
+                }
               }}
               transition={{ 
                 duration: 0.8, 
