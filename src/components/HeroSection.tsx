@@ -49,8 +49,8 @@ const HeroSection = () => {
           const force = (magneticRadius - distance) / magneticRadius;
           const angle = Math.atan2(deltaY, deltaX);
           
-          const pushX = -Math.cos(angle) * force * 60;
-          const pushY = -Math.sin(angle) * force * 60;
+          const pushX = -Math.cos(angle) * force * 120;
+          const pushY = -Math.sin(angle) * force * 120;
           
           cardX.set(card.baseX + pushX);
           cardY.set(card.baseY + pushY);
