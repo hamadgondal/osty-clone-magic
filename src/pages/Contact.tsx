@@ -47,8 +47,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@osty.com",
-      href: "mailto:hello@osty.com",
+      value: "hello@irozon.se",
+      href: "mailto:hello@irozon.se",
     },
     {
       icon: Phone,

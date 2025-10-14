@@ -29,7 +29,7 @@ const Navigation = () => {
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold tracking-tight"
           >
-            osty.
+            irozon.
           </motion.div>
 
           {/* Desktop Menu */}

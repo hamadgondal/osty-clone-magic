@@ -19,7 +19,7 @@ All colors MUST be HSL.
 
     --primary: 164 97% 39%;
     --primary-foreground: 0 0% 98%;
-    --primary-gradient: linear-gradient(135deg, hsl(164, 97%, 39%), hsl(164, 97%, 30%));
+    --primary-gradient: linear-gradient(135deg, #02C685, #A6CE39);
 
     --secondary: 0 0% 45%;
     --secondary-foreground: 0 0% 98%;
@@ -75,7 +75,7 @@ All colors MUST be HSL.
 
     --primary: 164 97% 39%;
     --primary-foreground: 0 0% 98%;
-    --primary-gradient: linear-gradient(135deg, hsl(164, 97%, 39%), hsl(164, 97%, 30%));
+    --primary-gradient: linear-gradient(135deg, #02C685, #A6CE39);
 
     --secondary: 0 0% 60%;
     --secondary-foreground: 0 0% 10%;

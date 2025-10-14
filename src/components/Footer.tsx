@@ -33,7 +33,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-12 px-6 bg-background">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">osty.</h3>
+            <h3 className="text-2xl font-bold mb-4">irozon.</h3>
             <p className="text-sm text-muted-foreground">
               A place to display your masterpiece and discover amazing artwork.
             </p>
@@ -68,7 +68,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2025 Osty. All rights reserved.</p>
+          <p>© 2025 irozon. All rights reserved.</p>
         </div>
       </div>
     </motion.footer>
