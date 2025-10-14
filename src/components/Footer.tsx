@@ -1,15 +1,36 @@
 import { motion } from "framer-motion";
 
 const Footer = () => {
+  const marqueeText = "Creative Studio • Brand Identity • Photography • Web Design • ";
+  
   return (
     <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="py-12 px-6 bg-secondary border-t border-border"
+      className="border-t border-border"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Moving text marquee */}
+      <div className="overflow-hidden bg-primary py-6">
+        <motion.div
+          animate={{ x: [0, -1000] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="flex whitespace-nowrap"
+        >
+          {[...Array(10)].map((_, i) => (
+            <span key={i} className="text-primary-foreground text-2xl md:text-4xl font-bold mx-8">
+              {marqueeText}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
+      <div className="max-w-7xl mx-auto py-12 px-6 bg-background">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">osty.</h3>
