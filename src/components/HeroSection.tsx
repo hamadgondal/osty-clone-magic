@@ -11,11 +11,11 @@ const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const cards = [
-    { image: hero1, color: "bg-card-blue", delay: 0, baseX: -220, baseY: 0 },
-    { image: hero2, color: "bg-card-peach", delay: 0.1, baseX: -110, baseY: 0 },
+    { image: hero1, color: "bg-card-blue", delay: 0, baseX: -280, baseY: 0 },
+    { image: hero2, color: "bg-card-peach", delay: 0.1, baseX: -140, baseY: 0 },
     { image: hero3, color: "bg-card-purple", delay: 0.2, baseX: 0, baseY: 0 },
-    { image: hero4, color: "bg-card-pink", delay: 0.3, baseX: 110, baseY: 0 },
-    { image: hero5, color: "bg-card-yellow", delay: 0.4, baseX: 220, baseY: 0 },
+    { image: hero4, color: "bg-card-pink", delay: 0.3, baseX: 140, baseY: 0 },
+    { image: hero5, color: "bg-card-yellow", delay: 0.4, baseX: 280, baseY: 0 },
   ];
 
   const MagneticCard = ({ card, index }: { card: typeof cards[0]; index: number }) => {

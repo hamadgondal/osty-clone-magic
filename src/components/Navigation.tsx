@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = ["Index", "News", "Projects", "Pages", "Shop", "Contact"];
+  const menuItems = [
+    { label: "Index", href: "/" },
+    { label: "News", href: "#news" },
+    { label: "Projects", href: "#projects" },
+    { label: "Pages", href: "#pages" },
+    { label: "Shop", href: "#shop" },
+    { label: "Contact", href: "/contact" },
+  ];
 
   return (
     <motion.nav
@@ -27,14 +35,25 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                whileHover={{ y: -2 }}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                {item}
-              </motion.a>
+              item.href.startsWith("#") ? (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  whileHover={{ y: -2 }}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </motion.a>
+              ) : (
+                <Link key={item.label} to={item.href}>
+                  <motion.span
+                    whileHover={{ y: -2 }}
+                    className="text-sm font-medium text-foreground hover:text-primary transition-colors inline-block"
+                  >
+                    {item.label}
+                  </motion.span>
+                </Link>
+              )
             ))}
           </div>
 
@@ -68,17 +87,30 @@ const Navigation = () => {
             >
               <div className="py-6 space-y-4">
                 {menuItems.map((item, index) => (
-                  <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </motion.a>
+                  item.href.startsWith("#") ? (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </motion.a>
+                  ) : (
+                    <Link key={item.label} to={item.href} onClick={() => setIsMenuOpen(false)}>
+                      <motion.span
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="block text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </motion.span>
+                    </Link>
+                  )
                 ))}
               </div>
             </motion.div>
