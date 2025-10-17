@@ -47,8 +47,11 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
-              {/* Moving text marquee */}
+        <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          <p>© 2025 irozon. All rights reserved.</p>
+        </div>
+      </div>
+      {/* Moving text marquee */}
       <div className="overflow-hidden bg-primary py-6">
         <motion.div
           animate={{ x: [0, -1000] }}
@@ -65,12 +68,6 @@ const Footer = () => {
             </span>
           ))}
         </motion.div>
-      </div>
-
-        
-        <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2025 irozon. All rights reserved.</p>
-        </div>
       </div>
     </motion.footer>
   );
