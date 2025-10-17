@@ -11,19 +11,21 @@ const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const cards = [
-    { image: hero1, color: "bg-card-blue", delay: 0, baseX: -280, baseY: 0 },
-    { image: hero2, color: "bg-card-peach", delay: 0.1, baseX: -140, baseY: 0 },
-    { image: hero3, color: "bg-card-purple", delay: 0.2, baseX: 0, baseY: 0 },
-    { image: hero4, color: "bg-card-pink", delay: 0.3, baseX: 140, baseY: 0 },
-    { image: hero5, color: "bg-card-yellow", delay: 0.4, baseX: 280, baseY: 0 },
+    { image: hero1, color: "bg-card-blue", delay: 0, baseX: -400, baseY: 0, rotation: -8 },
+    { image: hero2, color: "bg-card-peach", delay: 0.1, baseX: -200, baseY: 0, rotation: -4 },
+    { image: hero3, color: "bg-card-purple", delay: 0.2, baseX: 0, baseY: 0, rotation: 0 },
+    { image: hero4, color: "bg-card-pink", delay: 0.3, baseX: 200, baseY: 0, rotation: 4 },
+    { image: hero5, color: "bg-card-yellow", delay: 0.4, baseX: 400, baseY: 0, rotation: 8 },
   ];
 
   const MagneticCard = ({ card, index }: { card: typeof cards[0]; index: number }) => {
     const cardX = useMotionValue(card.baseX);
     const cardY = useMotionValue(card.baseY);
+    const cardRotate = useMotionValue(card.rotation);
     
-    const springX = useSpring(cardX, { stiffness: 150, damping: 20 });
-    const springY = useSpring(cardY, { stiffness: 150, damping: 20 });
+    const springX = useSpring(cardX, { stiffness: 200, damping: 25 });
+    const springY = useSpring(cardY, { stiffness: 200, damping: 25 });
+    const springRotate = useSpring(cardRotate, { stiffness: 200, damping: 25 });
 
     useEffect(() => {
       const handleMouseMove = (e: MouseEvent) => {
@@ -43,26 +45,30 @@ const HeroSection = () => {
         const deltaY = mouseY - cardCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const magneticRadius = 200;
+        const magneticRadius = 300;
         
         if (distance < magneticRadius) {
-          const force = (magneticRadius - distance) / magneticRadius;
+          const force = Math.pow((magneticRadius - distance) / magneticRadius, 2);
           const angle = Math.atan2(deltaY, deltaX);
           
-          const pushX = -Math.cos(angle) * force * 120;
-          const pushY = -Math.sin(angle) * force * 120;
+          const pushX = -Math.cos(angle) * force * 80;
+          const pushY = -Math.sin(angle) * force * 80;
+          const rotationOffset = -pushX * 0.05;
           
           cardX.set(card.baseX + pushX);
           cardY.set(card.baseY + pushY);
+          cardRotate.set(card.rotation + rotationOffset);
         } else {
           cardX.set(card.baseX);
           cardY.set(card.baseY);
+          cardRotate.set(card.rotation);
         }
       };
 
       const handleMouseLeave = () => {
         cardX.set(card.baseX);
         cardY.set(card.baseY);
+        cardRotate.set(card.rotation);
       };
 
       const container = containerRef.current;
@@ -75,33 +81,35 @@ const HeroSection = () => {
           container.removeEventListener('mouseleave', handleMouseLeave);
         };
       }
-    }, [card.baseX, card.baseY, cardX, cardY]);
+    }, [card.baseX, card.baseY, card.rotation, cardX, cardY, cardRotate]);
 
     return (
       <motion.div
-        initial={{ opacity: 0, y: 100, rotateY: -30 }}
+        initial={{ opacity: 0, scale: 0.8, y: 50 }}
         animate={{ 
           opacity: 1, 
-          y: 0, 
-          rotateY: 0,
+          scale: 1, 
+          y: 0,
         }}
         style={{
           x: springX,
           y: springY,
+          rotate: springRotate,
           transformStyle: "preserve-3d",
-          zIndex: index === 2 ? 30 : 20 - Math.abs(2 - index) * 5,
+          zIndex: index === 2 ? 30 : 20 - Math.abs(2 - index) * 3,
         }}
         transition={{ 
-          duration: 0.8, 
-          delay: 0.5 + card.delay,
+          duration: 0.6, 
+          delay: 0.3 + card.delay,
           type: "spring",
-          stiffness: 100
+          stiffness: 120,
+          damping: 15
         }}
-        className={`absolute w-[180px] h-[240px] md:w-[260px] md:h-[340px] rounded-3xl ${card.color} shadow-2xl overflow-hidden cursor-pointer`}
+        className={`absolute w-[200px] h-[260px] md:w-[280px] md:h-[360px] rounded-[32px] ${card.color} shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden cursor-pointer`}
       >
         <img
           src={card.image}
-          alt={`Hero image ${index + 1}`}
+          alt={`Portfolio showcase ${index + 1}`}
           className="w-full h-full object-cover"
         />
       </motion.div>
@@ -123,7 +131,7 @@ const HeroSection = () => {
         {/* Overlapping Cards with Magnetic Effect */}
         <div 
           ref={containerRef}
-          className="flex items-center justify-center mb-12 h-[300px] md:h-[400px] relative"
+          className="flex items-center justify-center mb-16 h-[320px] md:h-[440px] relative px-4"
         >
           {cards.map((card, index) => (
             <MagneticCard key={index} card={card} index={index} />
