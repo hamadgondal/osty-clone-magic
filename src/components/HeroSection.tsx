@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -125,7 +126,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-12 text-foreground"
         >
-          We Build Digital Experiences That Define Your Brand.
+          Digital Experiences That Define Your Brand.
         </motion.h1>
 
         {/* Overlapping Cards with Magnetic Effect */}
@@ -144,7 +145,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
         >
-          You have a vision. We have the technical and creative expertise to digitize it. From Pixel to Platform, we build scalable web and mobile apps, forge powerful brand identities, and deliver graphic design that cuts through the noise.
+          You have a vision. We have the technical and creative expertise to digitize it. From Pixel to Platform, we build scalable web and mobile apps, forge powerful brand identities, and deliver graphic design that cuts through the noise. Ready to make your vision a digital reality?
         </motion.p>
 
         <motion.div
@@ -153,9 +154,11 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button size="lg" className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90">
-            Contact us
-          </Button>
+          <Link to="/contact">
+              <Button size="lg" className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90">
+                  Contact us
+              </Button>
+          </Link>
           <Button size="lg" variant="secondary" className="rounded-full px-8 text-base font-medium">
             Discover Our Work
           </Button>
