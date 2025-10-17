@@ -45,15 +45,15 @@ const HeroSection = () => {
         const deltaY = mouseY - cardCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const magneticRadius = 300;
+        const magneticRadius = 350;
         
         if (distance < magneticRadius) {
           const force = Math.pow((magneticRadius - distance) / magneticRadius, 2);
           const angle = Math.atan2(deltaY, deltaX);
           
-          const pushX = -Math.cos(angle) * force * 80;
-          const pushY = -Math.sin(angle) * force * 80;
-          const rotationOffset = -pushX * 0.05;
+          const pushX = -Math.cos(angle) * force * 200;
+          const pushY = -Math.sin(angle) * force * 200;
+          const rotationOffset = -pushX * 0.08;
           
           cardX.set(card.baseX + pushX);
           cardY.set(card.baseY + pushY);
