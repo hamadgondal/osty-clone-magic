@@ -11,31 +11,12 @@ const Footer = () => {
       transition={{ duration: 0.8 }}
       className="border-t border-border"
     >
-      {/* Moving text marquee */}
-      <div className="overflow-hidden bg-primary py-6">
-        <motion.div
-          animate={{ x: [0, -1000] }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="flex whitespace-nowrap"
-        >
-          {[...Array(10)].map((_, i) => (
-            <span key={i} className="text-primary-foreground text-2xl md:text-4xl font-bold mx-8">
-              {marqueeText}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
       <div className="max-w-7xl mx-auto py-12 px-6 bg-background">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">irozon.</h3>
             <p className="text-sm text-muted-foreground">
-              A place to display your masterpiece and discover amazing artwork.
+            The digital studio where Code and Color fuse. We build apps, websites, and defining brand identities.
             </p>
           </div>
           
@@ -66,6 +47,26 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
+              {/* Moving text marquee */}
+      <div className="overflow-hidden bg-primary py-6">
+        <motion.div
+          animate={{ x: [0, -1000] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="flex whitespace-nowrap"
+        >
+          {[...Array(10)].map((_, i) => (
+            <span key={i} className="text-primary-foreground text-2xl md:text-4xl font-bold mx-8">
+              {marqueeText}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+
         
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
           <p>© 2025 irozon. All rights reserved.</p>
