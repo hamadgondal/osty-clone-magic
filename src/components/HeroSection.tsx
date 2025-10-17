@@ -125,7 +125,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-12 text-foreground"
         >
-          A place to display your masterpiece
+          We Build Digital Experiences That Define Your Brand.
         </motion.h1>
 
         {/* Overlapping Cards with Magnetic Effect */}
@@ -144,7 +144,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
         >
-          Artists can display their masterpieces, and buyers can discover and purchase works that resonate with them.
+          You have a vision. We have the technical and creative expertise to digitize it. From Pixel to Platform, we build scalable web and mobile apps, forge powerful brand identities, and deliver graphic design that cuts through the noise.
         </motion.p>
 
         <motion.div
@@ -154,7 +154,7 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Button size="lg" className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90">
-            Contact Me
+            Contact us
           </Button>
           <Button size="lg" variant="secondary" className="rounded-full px-8 text-base font-medium">
             Discover Our Work

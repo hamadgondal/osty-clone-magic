@@ -10,8 +10,8 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const menuItems = [
-    { label: "Index", href: "/" },
-    { label: "Projects", href: "/projects" },
+    { label: "Home", href: "/" },
+    { label: "Portfolio", href: "/projects" },
     { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
   ];
