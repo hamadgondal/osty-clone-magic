@@ -11,7 +11,7 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "Index", href: "/" },
-    { label: "Projects", href: "#projects" },
+    { label: "Projects", href: "/projects" },
     { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
   ];
@@ -44,12 +44,8 @@ const Navigation = () => {
             irozon.
           </motion.div>
 
-          {/* Desktop Menu - Hidden when scrolled */}
-          <motion.div 
-            animate={{ opacity: isScrolled ? 0 : 1, pointerEvents: isScrolled ? "none" : "auto" }}
-            transition={{ duration: 0.3 }}
-            className="hidden md:flex items-center gap-8"
-          >
+          {/* Desktop Menu - Always visible */}
+          <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               item.href.startsWith("#") ? (
                 <motion.a
@@ -71,7 +67,7 @@ const Navigation = () => {
                 </Link>
               )
             ))}
-          </motion.div>
+          </div>
 
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" className="rounded-full">
