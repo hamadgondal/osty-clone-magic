@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const Footer = () => {
-  const marqueeText = "Creative Studio • Brand Identity • Photography • Web Design • ";
+  const marqueeText = "MOBILE APPS • WEB ENGINEERING • BRAND IDENTITY • UI/UX DESIGN • BUILD TO SCALE • CODE & COLOR FUSION";
   
   return (
     <motion.footer

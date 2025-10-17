@@ -5,23 +5,23 @@ const Services = () => {
   const services = [
     {
       icon: Palette,
-      title: "Brand Identity",
-      description: "Creating unique visual identities that capture the essence of your brand and resonate with your audience.",
+      title: "Mobile App Development",
+      description: "Building high-performance, native (iOS & Android) and cross-platform applications. We ensure speed, stability, and a flawless user experience on every device.",
     },
     {
       icon: Camera,
-      title: "Photography",
-      description: "Professional photography services that tell your story through stunning, high-quality imagery.",
+      title: "Web & App Development",
+      description: "Engineering scalable web applications and custom CMS-driven websites. We deliver robust, secure, and future-proof digital platforms designed for growth.",
     },
     {
       icon: Layout,
-      title: "Web Design",
-      description: "Modern, responsive websites designed to provide exceptional user experiences and drive results.",
+      title: "Brand Identity & Strategy",
+      description: "Designing complete brand systems—from logo creation and voice development to comprehensive style guides that ensure a unified, memorable presence.",
     },
     {
       icon: Sparkles,
-      title: "Creative Direction",
-      description: "Strategic creative guidance to ensure your projects achieve their full artistic and commercial potential.",
+      title: "UI/UX & Graphic Design",
+      description: "Creating intuitive User Interfaces (UI) and compelling User Experiences (UX). This includes all necessary graphic assets, marketing materials, and digital visuals.",
     },
   ];
 
