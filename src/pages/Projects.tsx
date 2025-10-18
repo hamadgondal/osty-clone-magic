@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import project1 from "@/assets/project-1.jpg";
@@ -32,28 +31,8 @@ const Projects = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Scrolling Ticker */}
-      <div className="pt-32 pb-12 overflow-hidden bg-background">
-        <div className="relative flex">
-          <motion.div
-            animate={{ x: [0, -1000] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap"
-          >
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center">
-                <span className="text-6xl md:text-8xl font-bold text-foreground px-8">
-                  DISCOVER OUR WORK
-                </span>
-                <ArrowDown className="w-12 h-12 md:w-16 md:h-16 text-primary rotate-[-90deg]" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
       {/* Featured Work Section */}
-      <section className="py-20 px-6 bg-background">
+      <section className="pt-32 py-20 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
