@@ -14,22 +14,22 @@ const Services = () => {
       icon: Camera,
       title: "Web & App Development",
       description: "Engineering scalable web applications and custom CMS-driven websites. We deliver robust, secure, and future-proof digital platforms designed for growth.",
-      gradient: "from-purple-500/10 to-pink-500/10",
-      iconBg: "bg-gradient-to-br from-purple-500 to-pink-500",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
     },
     {
       icon: Layout,
       title: "Brand Identity & Strategy",
       description: "Designing complete brand systems—from logo creation and voice development to comprehensive style guides that ensure a unified, memorable presence.",
-      gradient: "from-orange-500/10 to-yellow-500/10",
-      iconBg: "bg-gradient-to-br from-orange-500 to-yellow-500",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
     },
     {
       icon: Sparkles,
       title: "UI/UX & Graphic Design",
       description: "Creating intuitive User Interfaces (UI) and compelling User Experiences (UX). This includes all necessary graphic assets, marketing materials, and digital visuals.",
-      gradient: "from-green-500/10 to-emerald-500/10",
-      iconBg: "bg-gradient-to-br from-green-500 to-emerald-500",
+      gradient: "from-blue-500/10 to-cyan-500/10",
+      iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
     },
   ];
 
