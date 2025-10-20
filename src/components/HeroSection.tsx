@@ -2,6 +2,12 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -12,11 +18,56 @@ const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const cards = [
-    { image: hero1, color: "bg-card-blue", delay: 0, baseX: -400, baseY: 0, rotation: -8 },
-    { image: hero2, color: "bg-card-peach", delay: 0.1, baseX: -200, baseY: 0, rotation: -4 },
-    { image: hero3, color: "bg-card-purple", delay: 0.2, baseX: 0, baseY: 0, rotation: 0 },
-    { image: hero4, color: "bg-card-pink", delay: 0.3, baseX: 200, baseY: 0, rotation: 4 },
-    { image: hero5, color: "bg-card-yellow", delay: 0.4, baseX: 400, baseY: 0, rotation: 8 },
+    { 
+      image: hero1, 
+      color: "bg-card-blue", 
+      delay: 0, 
+      baseX: -400, 
+      baseY: 0, 
+      rotation: -8,
+      service: "Mobile App Development",
+      description: "Native iOS & Android apps with flawless performance"
+    },
+    { 
+      image: hero2, 
+      color: "bg-card-peach", 
+      delay: 0.1, 
+      baseX: -200, 
+      baseY: 0, 
+      rotation: -4,
+      service: "Web Development",
+      description: "Scalable web applications built for growth"
+    },
+    { 
+      image: hero3, 
+      color: "bg-card-purple", 
+      delay: 0.2, 
+      baseX: 0, 
+      baseY: 0, 
+      rotation: 0,
+      service: "Brand Identity",
+      description: "Complete brand systems that leave a lasting impression"
+    },
+    { 
+      image: hero4, 
+      color: "bg-card-pink", 
+      delay: 0.3, 
+      baseX: 200, 
+      baseY: 0, 
+      rotation: 4,
+      service: "UI/UX Design",
+      description: "Intuitive interfaces with compelling user experiences"
+    },
+    { 
+      image: hero5, 
+      color: "bg-card-yellow", 
+      delay: 0.4, 
+      baseX: 400, 
+      baseY: 0, 
+      rotation: 8,
+      service: "Graphic Design",
+      description: "Visual assets that capture attention and drive engagement"
+    },
   ];
 
   const MagneticCard = ({ card, index }: { card: typeof cards[0]; index: number }) => {
@@ -85,46 +136,55 @@ const HeroSection = () => {
     }, [card.baseX, card.baseY, card.rotation, cardX, cardY, cardRotate]);
 
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 50 }}
-        animate={{ 
-          opacity: 1, 
-          scale: 1, 
-          y: 0,
-        }}
-        style={{
-          x: springX,
-          y: springY,
-          rotate: springRotate,
-          transformStyle: "preserve-3d",
-          zIndex: index === 2 ? 30 : 20 - Math.abs(2 - index) * 3,
-        }}
-        transition={{ 
-          duration: 0.6, 
-          delay: 0.3 + card.delay,
-          type: "spring",
-          stiffness: 120,
-          damping: 15
-        }}
-        className={`absolute w-[200px] h-[260px] md:w-[280px] md:h-[360px] rounded-[32px] ${card.color} shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden cursor-pointer`}
-      >
-        <img
-          src={card.image}
-          alt={`Portfolio showcase ${index + 1}`}
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0,
+            }}
+            style={{
+              x: springX,
+              y: springY,
+              rotate: springRotate,
+              transformStyle: "preserve-3d",
+              zIndex: index === 2 ? 30 : 20 - Math.abs(2 - index) * 3,
+            }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.3 + card.delay,
+              type: "spring",
+              stiffness: 120,
+              damping: 15
+            }}
+            className={`absolute w-[200px] h-[260px] md:w-[280px] md:h-[360px] rounded-[32px] ${card.color} shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden cursor-pointer`}
+          >
+            <img
+              src={card.image}
+              alt={card.service}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-xs">
+          <p className="font-semibold text-sm mb-1">{card.service}</p>
+          <p className="text-xs text-muted-foreground">{card.description}</p>
+        </TooltipContent>
+      </Tooltip>
     );
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-32 bg-background">
-      <div className="max-w-6xl mx-auto text-center">
+    <TooltipProvider>
+      <section className="min-h-screen flex items-center justify-center px-4 md:px-6 py-20 md:py-32 bg-background">
+        <div className="max-w-6xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-12 text-foreground"
+          className="text-4xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 md:mb-12 text-foreground px-2"
         >
           Digital Experiences That Define Your Brand.
         </motion.h1>
@@ -132,7 +192,7 @@ const HeroSection = () => {
         {/* Overlapping Cards with Magnetic Effect */}
         <div 
           ref={containerRef}
-          className="flex items-center justify-center mb-16 h-[320px] md:h-[440px] relative px-4"
+          className="flex items-center justify-center mb-8 md:mb-16 h-[280px] md:h-[440px] relative px-2 md:px-4"
         >
           {cards.map((card, index) => (
             <MagneticCard key={index} card={card} index={index} />
@@ -143,7 +203,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+          className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto px-2"
         >
           You have a vision. We have the technical and creative expertise to digitize it. From Pixel to Platform, we build scalable web and mobile apps, forge powerful brand identities, and deliver graphic design that cuts through the noise. Ready to make your vision a digital reality?
         </motion.p>
@@ -165,8 +225,9 @@ const HeroSection = () => {
             </Button>
           </Link>
         </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </TooltipProvider>
   );
 };
 
