@@ -20,7 +20,7 @@ const HeroSection = () => {
   const cards = [
     { 
       image: hero1, 
-      color: "bg-card-blue", 
+      color: "bg-gradient-to-br from-blue-500 to-cyan-500", 
       delay: 0, 
       baseX: -400, 
       baseY: 0, 
@@ -30,7 +30,7 @@ const HeroSection = () => {
     },
     { 
       image: hero2, 
-      color: "bg-card-peach", 
+      color: "bg-gradient-to-br from-purple-500 to-pink-500", 
       delay: 0.1, 
       baseX: -200, 
       baseY: 0, 
@@ -40,7 +40,7 @@ const HeroSection = () => {
     },
     { 
       image: hero3, 
-      color: "bg-card-purple", 
+      color: "bg-gradient-to-br from-orange-500 to-red-500", 
       delay: 0.2, 
       baseX: 0, 
       baseY: 0, 
@@ -50,7 +50,7 @@ const HeroSection = () => {
     },
     { 
       image: hero4, 
-      color: "bg-card-pink", 
+      color: "bg-gradient-to-br from-pink-500 to-purple-500", 
       delay: 0.3, 
       baseX: 200, 
       baseY: 0, 
@@ -60,7 +60,7 @@ const HeroSection = () => {
     },
     { 
       image: hero5, 
-      color: "bg-card-yellow", 
+      color: "bg-gradient-to-br from-yellow-500 to-orange-500", 
       delay: 0.4, 
       baseX: 400, 
       baseY: 0, 
