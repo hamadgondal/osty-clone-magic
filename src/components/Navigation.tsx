@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Search, Home, Briefcase, Mail, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, Home, Briefcase, Mail, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
     { label: "Home", href: "/", icon: Home },
@@ -30,17 +22,6 @@ const Navigation = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
   }, []);
 
   return (
@@ -63,7 +44,7 @@ const Navigation = () => {
             irozon.
           </motion.div>
 
-          {/* Desktop Menu - Always visible */}
+          {/* Desktop/Tablet Menu */}
           <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               item.href.startsWith("#") ? (
@@ -88,41 +69,35 @@ const Navigation = () => {
             ))}
           </div>
 
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="rounded-full"
-            onClick={() => setOpen(true)}
-          >
-            <Search className="h-5 w-5" />
-          </Button>
+          {/* Mobile Menu */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-6 mt-8">
+                {menuItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-4 text-lg font-medium text-foreground hover:text-primary transition-colors"
+                    >
+                      <Icon className="h-5 w-5" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
 
       </div>
-
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search pages..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Navigation">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <CommandItem
-                  key={item.href}
-                  onSelect={() => {
-                    navigate(item.href);
-                    setOpen(false);
-                  }}
-                >
-                  <Icon className="mr-2 h-4 w-4" />
-                  <span>{item.label}</span>
-                </CommandItem>
-              );
-            })}
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
     </motion.nav>
   );
 };
