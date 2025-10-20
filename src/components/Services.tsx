@@ -47,17 +47,6 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-2 bg-primary/10 rounded-full mb-6"
-          >
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-              What We Offer
-            </span>
-          </motion.div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
             Our Services
           </h2>

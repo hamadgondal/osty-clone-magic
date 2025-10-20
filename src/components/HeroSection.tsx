@@ -155,13 +155,15 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link to="/contact">
-              <Button size="lg" className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90">
-                  Contact us
-              </Button>
+            <Button size="lg" className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90">
+              Contact us
+            </Button>
           </Link>
-          <Button size="lg" variant="secondary" className="rounded-full px-8 text-base font-medium">
-            Discover Our Work
-          </Button>
+          <Link to="/projects">
+            <Button size="lg" className="rounded-full px-8 text-base font-medium bg-secondary hover:bg-secondary/90">
+              Discover Our Work
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>
