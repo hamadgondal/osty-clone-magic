@@ -75,9 +75,9 @@ const HeroSection = () => {
     const cardY = useMotionValue(card.baseY);
     const cardRotate = useMotionValue(card.rotation);
     
-    const springX = useSpring(cardX, { stiffness: 200, damping: 25 });
-    const springY = useSpring(cardY, { stiffness: 200, damping: 25 });
-    const springRotate = useSpring(cardRotate, { stiffness: 200, damping: 25 });
+    const springX = useSpring(cardX, { stiffness: 300, damping: 15 });
+    const springY = useSpring(cardY, { stiffness: 300, damping: 15 });
+    const springRotate = useSpring(cardRotate, { stiffness: 300, damping: 15 });
 
     useEffect(() => {
       const handleMouseMove = (e: MouseEvent) => {
@@ -97,18 +97,18 @@ const HeroSection = () => {
         const deltaY = mouseY - cardCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const magneticRadius = 350;
+        const magneticRadius = 300;
         
         if (distance < magneticRadius) {
           const force = Math.pow((magneticRadius - distance) / magneticRadius, 2);
           const angle = Math.atan2(deltaY, deltaX);
           
-          const pushX = -Math.cos(angle) * force * 200;
-          const pushY = -Math.sin(angle) * force * 200;
-          const rotationOffset = -pushX * 0.08;
+          const pullX = Math.cos(angle) * force * 60;
+          const pullY = Math.sin(angle) * force * 60;
+          const rotationOffset = pullX * 0.06;
           
-          cardX.set(card.baseX + pushX);
-          cardY.set(card.baseY + pushY);
+          cardX.set(card.baseX + pullX);
+          cardY.set(card.baseY + pullY);
           cardRotate.set(card.rotation + rotationOffset);
         } else {
           cardX.set(card.baseX);
