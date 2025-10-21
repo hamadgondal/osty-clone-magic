@@ -8,6 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -16,13 +17,22 @@ import hero5 from "@/assets/hero-5.jpg";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
+  // Responsive baseX values - much smaller on mobile
+  const getBaseX = (index: number) => {
+    if (isMobile) {
+      return [-80, -40, 0, 40, 80][index];
+    }
+    return [-400, -200, 0, 200, 400][index];
+  };
 
   const cards = [
     { 
       image: hero1, 
       color: "bg-gradient-to-br from-blue-500 to-cyan-500", 
       delay: 0, 
-      baseX: -400, 
+      index: 0,
       baseY: 0, 
       rotation: -8,
       service: "Mobile App Development",
@@ -32,7 +42,7 @@ const HeroSection = () => {
       image: hero2, 
       color: "bg-gradient-to-br from-purple-500 to-pink-500", 
       delay: 0.1, 
-      baseX: -200, 
+      index: 1,
       baseY: 0, 
       rotation: -4,
       service: "Web Development",
@@ -42,7 +52,7 @@ const HeroSection = () => {
       image: hero3, 
       color: "bg-gradient-to-br from-orange-500 to-red-500", 
       delay: 0.2, 
-      baseX: 0, 
+      index: 2,
       baseY: 0, 
       rotation: 0,
       service: "Brand Identity",
@@ -52,7 +62,7 @@ const HeroSection = () => {
       image: hero4, 
       color: "bg-gradient-to-br from-pink-500 to-purple-500", 
       delay: 0.3, 
-      baseX: 200, 
+      index: 3,
       baseY: 0, 
       rotation: 4,
       service: "UI/UX Design",
@@ -62,7 +72,7 @@ const HeroSection = () => {
       image: hero5, 
       color: "bg-gradient-to-br from-yellow-500 to-orange-500", 
       delay: 0.4, 
-      baseX: 400, 
+      index: 4,
       baseY: 0, 
       rotation: 8,
       service: "Graphic Design",
@@ -71,7 +81,8 @@ const HeroSection = () => {
   ];
 
   const MagneticCard = ({ card, index }: { card: typeof cards[0]; index: number }) => {
-    const cardX = useMotionValue(card.baseX);
+    const baseX = getBaseX(card.index);
+    const cardX = useMotionValue(baseX);
     const cardY = useMotionValue(card.baseY);
     const cardRotate = useMotionValue(card.rotation);
     
@@ -90,35 +101,39 @@ const HeroSection = () => {
         const mouseX = e.clientX - centerX;
         const mouseY = e.clientY - centerY;
         
-        const cardCenterX = card.baseX;
+        const currentBaseX = getBaseX(card.index);
+        const cardCenterX = currentBaseX;
         const cardCenterY = card.baseY;
         
         const deltaX = mouseX - cardCenterX;
         const deltaY = mouseY - cardCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const magneticRadius = 300;
+        // Smaller magnetic radius and pull force on mobile
+        const magneticRadius = isMobile ? 150 : 300;
+        const pullMultiplier = isMobile ? 30 : 60;
         
         if (distance < magneticRadius) {
           const force = Math.pow((magneticRadius - distance) / magneticRadius, 2);
           const angle = Math.atan2(deltaY, deltaX);
           
-          const pullX = Math.cos(angle) * force * 60;
-          const pullY = Math.sin(angle) * force * 60;
+          const pullX = Math.cos(angle) * force * pullMultiplier;
+          const pullY = Math.sin(angle) * force * pullMultiplier;
           const rotationOffset = pullX * 0.06;
           
-          cardX.set(card.baseX + pullX);
+          cardX.set(currentBaseX + pullX);
           cardY.set(card.baseY + pullY);
           cardRotate.set(card.rotation + rotationOffset);
         } else {
-          cardX.set(card.baseX);
+          cardX.set(currentBaseX);
           cardY.set(card.baseY);
           cardRotate.set(card.rotation);
         }
       };
 
       const handleMouseLeave = () => {
-        cardX.set(card.baseX);
+        const currentBaseX = getBaseX(card.index);
+        cardX.set(currentBaseX);
         cardY.set(card.baseY);
         cardRotate.set(card.rotation);
       };
@@ -133,7 +148,7 @@ const HeroSection = () => {
           container.removeEventListener('mouseleave', handleMouseLeave);
         };
       }
-    }, [card.baseX, card.baseY, card.rotation, cardX, cardY, cardRotate]);
+    }, [card.index, card.baseY, card.rotation, cardX, cardY, cardRotate, isMobile]);
 
     return (
       <Tooltip>
@@ -178,7 +193,7 @@ const HeroSection = () => {
 
   return (
     <TooltipProvider>
-      <section className="min-h-screen flex items-center justify-center px-4 md:px-6 py-20 md:py-32 bg-background">
+      <section className="min-h-screen flex items-center justify-center px-4 md:px-6 py-20 md:py-32 bg-background overflow-hidden">
         <div className="max-w-6xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -192,7 +207,7 @@ const HeroSection = () => {
         {/* Overlapping Cards with Magnetic Effect */}
         <div 
           ref={containerRef}
-          className="flex items-center justify-center mb-8 md:mb-16 h-[280px] md:h-[440px] relative px-2 md:px-4"
+          className="flex items-center justify-center mb-8 md:mb-16 h-[280px] md:h-[440px] relative overflow-hidden"
         >
           {cards.map((card, index) => (
             <MagneticCard key={index} card={card} index={index} />

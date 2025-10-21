@@ -41,9 +41,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Instagram</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Twitter</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">LinkedIn</a></li>
+              <li><a href="https://www.facebook.com/irozon" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Facebook</a></li>
+              <li><a href="https://www.linkedin.com/company/irozon" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a></li>
+              <li><a href="https://www.instagram.com/irozonllc/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Instagram</a></li>
             </ul>
           </div>
         </div>
