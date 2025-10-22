@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -9,84 +12,48 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import project5 from "@/assets/project-5.jpg";
-import project6 from "@/assets/project-6.jpg";
+
+type Project = {
+  id: string;
+  title: string;
+  category: string;
+  image_url: string;
+  client: string;
+  year: string;
+  description: string;
+  technologies: string[];
+};
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All Categories");
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = ["All Categories", "Creative", "Design", "Photo", "Style"];
 
-  const projects = [
-    { 
-      id: 1, 
-      title: "The Dark Side", 
-      category: "Creative", 
-      image: project1,
-      client: "Dark Studios",
-      year: "2024",
-      description: "A bold creative campaign that explores the darker side of modern design aesthetics. This project combines cutting-edge visual storytelling with immersive user experiences.",
-      technologies: ["React", "Three.js", "GSAP", "WebGL"]
-    },
-    { 
-      id: 2, 
-      title: "Justice Robot", 
-      category: "Design", 
-      image: project2,
-      client: "Tech Innovations Inc",
-      year: "2024",
-      description: "An innovative design system that brings robotics and justice together through powerful visual metaphors and interactive elements.",
-      technologies: ["Figma", "React", "Framer Motion", "TypeScript"]
-    },
-    { 
-      id: 3, 
-      title: "Color Current", 
-      category: "Photo", 
-      image: project3,
-      client: "Flow Creative",
-      year: "2023",
-      description: "A stunning photography series that captures the essence of color in motion, combining artistic vision with technical excellence.",
-      technologies: ["Photography", "Adobe Suite", "Color Grading"]
-    },
-    { 
-      id: 4, 
-      title: "Subsequent Sneeze", 
-      category: "Creative", 
-      image: project4,
-      client: "Wellness Brand Co",
-      year: "2023",
-      description: "A creative exploration of unexpected moments and their ripple effects, told through engaging visuals and interactive storytelling.",
-      technologies: ["React", "Animation", "Creative Direction"]
-    },
-    { 
-      id: 5, 
-      title: "Abstract Dreams", 
-      category: "Design", 
-      image: project5,
-      client: "Dream Labs",
-      year: "2024",
-      description: "An abstract design project that pushes the boundaries of digital art and user interface design, creating dreamlike experiences.",
-      technologies: ["UI/UX Design", "React", "Canvas API", "WebGL"]
-    },
-    { 
-      id: 6, 
-      title: "Minimal Essence", 
-      category: "Photo", 
-      image: project6,
-      client: "Essence Studio",
-      year: "2023",
-      description: "A minimalist photography project that strips away the unnecessary to reveal the true essence of subjects through clean composition.",
-      technologies: ["Photography", "Minimalist Design", "Post-Production"]
-    },
-  ];
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
-  const handleProjectClick = (project: typeof projects[0]) => {
+  const fetchProjects = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("projects")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (error) {
+      toast.error("Failed to load projects");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
     setIsDialogOpen(true);
   };
@@ -144,16 +111,21 @@ const Projects = () => {
           </motion.div>
 
           {/* Project Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeFilter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredProjects.map((project, index) => (
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="w-8 h-8 animate-spin" />
+            </div>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFilter}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -165,7 +137,7 @@ const Projects = () => {
                 >
                   <div className="relative overflow-hidden rounded-3xl bg-card shadow-lg aspect-[4/5]">
                     <img
-                      src={project.image}
+                      src={project.image_url}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -177,9 +149,10 @@ const Projects = () => {
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          )}
         </div>
       </section>
 
@@ -199,7 +172,7 @@ const Projects = () => {
               <div className="space-y-6">
                 <div className="relative aspect-video rounded-lg overflow-hidden">
                   <img
-                    src={selectedProject.image}
+                    src={selectedProject.image_url}
                     alt={selectedProject.title}
                     className="w-full h-full object-cover"
                   />
