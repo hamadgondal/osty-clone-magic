@@ -21,9 +21,8 @@ const PortfolioGrid = () => {
     { id: 6, title: "Minimal Essence", category: "Photo", image: project6 },
   ];
 
-  const filteredProjects = activeFilter === "All" 
-    ? projects 
-    : projects.filter(p => p.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter);
 
   return (
     <section className="py-20 px-6 bg-background">
@@ -64,6 +63,7 @@ const PortfolioGrid = () => {
         </motion.div>
 
         {/* Project Grid */}
+        <AnimatePresence></AnimatePresence>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
@@ -82,7 +82,7 @@ const PortfolioGrid = () => {
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-3xl bg-card shadow-lg aspect-[4/5]">
+                <div className="relative overflow-hidden rounded-3xl bg-card shadow-lg aspect-[5/5]">
                   <img
                     src={project.image}
                     alt={project.title}

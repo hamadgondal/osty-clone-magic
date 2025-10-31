@@ -34,9 +34,7 @@ const Contact = () => {
     }, 1000);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -59,7 +57,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      value: "123 Creative Street, Design City, DC 12345",
+      value: "Stockholm, Sweden",
       href: "#",
     },
   ];
@@ -67,7 +65,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -80,7 +78,8 @@ const Contact = () => {
               Get In Touch
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              Have a project in mind? We'd love to hear from you. Send us a message and we'll
+              respond as soon as possible.
             </p>
           </motion.div>
 
@@ -145,12 +144,7 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  size="lg"
-                  disabled={isSubmitting}
-                >
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                   {isSubmitting ? (
                     "Sending..."
                   ) : (
@@ -170,9 +164,7 @@ const Contact = () => {
               className="space-y-8"
             >
               <div className="bg-card rounded-3xl p-8 border border-border">
-                <h2 className="text-2xl font-bold mb-6 text-foreground">
-                  Contact Information
-                </h2>
+                <h2 className="text-2xl font-bold mb-6 text-foreground">Contact Information</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
@@ -189,9 +181,7 @@ const Contact = () => {
                           <Icon className="w-6 h-6 text-primary-foreground" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground mb-1">
-                            {info.title}
-                          </h3>
+                          <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
                           <p className="text-muted-foreground group-hover:text-foreground transition-colors">
                             {info.value}
                           </p>
@@ -203,13 +193,10 @@ const Contact = () => {
               </div>
 
               <div className="bg-muted/30 rounded-3xl p-8">
-                <h3 className="text-xl font-bold mb-4 text-foreground">
-                  Business Hours
-                </h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Business Hours</h3>
                 <div className="space-y-2 text-muted-foreground">
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Saturday: 10:00 AM - 4:00 PM</p>
-                  <p>Sunday: Closed</p>
+                  <p>Monday - Friday: 9:00 - 18:00</p>
+                  <p>Saturday - Sunday: Closed</p>
                 </div>
               </div>
             </motion.div>
