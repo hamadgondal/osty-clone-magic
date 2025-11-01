@@ -11,7 +11,7 @@ const Footer = () => {
       transition={{ duration: 0.8 }}
       className="border-t border-border"
     >
-      <div className="max-w-7xl mx-auto py-12 px-6 bg-background">
+      <div className="max-w-7xl mx-auto py-12 px-6 bg-[hsl(var(--header-footer))]">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold mb-4">irozon.</h3>

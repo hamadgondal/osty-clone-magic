@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 140 25% 97%;
+    --background: 0 0% 96%;
     --foreground: 212 10% 22%;
 
     --card: 0 0% 100%;
@@ -16,6 +16,16 @@ All colors MUST be HSL.
 
     --popover: 0 0% 100%;
     --popover-foreground: 212 10% 22%;
+
+    /* Custom button colors */
+    --button-base: 0 0% 15%;
+    --button-base-foreground: 0 0% 98%;
+    --button-hover: 164 97% 39%;
+    --button-hover-foreground: 0 0% 98%;
+
+    /* Header/Footer colors */
+    --header-footer: 0 0% 70%;
+    --header-footer-foreground: 0 0% 98%;
 
     --primary: 164 97% 39%;
     --primary-foreground: 0 0% 98%;
@@ -72,6 +82,16 @@ All colors MUST be HSL.
 
     --popover: 205 82% 12%;
     --popover-foreground: 140 25% 97%;
+
+    /* Custom button colors */
+    --button-base: 0 0% 15%;
+    --button-base-foreground: 0 0% 98%;
+    --button-hover: 164 97% 39%;
+    --button-hover-foreground: 0 0% 98%;
+
+    /* Header/Footer colors */
+    --header-footer: 0 0% 30%;
+    --header-footer-foreground: 0 0% 98%;
 
     --primary: 164 97% 39%;
     --primary-foreground: 0 0% 98%;

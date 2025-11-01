@@ -226,7 +226,7 @@ const HeroSectionOld = () => {
             <Link to="/contact">
               <Button
                 size="lg"
-                className="rounded-full px-8 text-base font-medium bg-primary hover:bg-primary/90"
+                className="px-8 text-base font-medium"
               >
                 Contact us
               </Button>
@@ -234,7 +234,7 @@ const HeroSectionOld = () => {
             <Link to="/projects">
               <Button
                 size="lg"
-                className="rounded-full px-8 text-base font-medium bg-secondary hover:bg-secondary/90"
+                className="px-8 text-base font-medium"
               >
                 Discover Our Work
               </Button>

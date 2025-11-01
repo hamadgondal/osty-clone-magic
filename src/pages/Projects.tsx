@@ -129,13 +129,12 @@ const Projects = () => {
             {categories.map((category) => (
               <motion.button
                 key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
+                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeFilter === category
                     ? "bg-foreground text-background"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    : "bg-[hsl(var(--button-base))] text-[hsl(var(--button-base-foreground))] hover:bg-[hsl(var(--button-hover))]"
                 }`}
               >
                 {category}
@@ -226,10 +225,10 @@ const Projects = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-3">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies.map((tech) => (
+                     {selectedProject.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 bg-secondary text-secondary-foreground rounded-full text-sm font-medium"
+                        className="px-4 py-2 bg-[hsl(var(--button-base))] text-[hsl(var(--button-base-foreground))] rounded-xl text-sm font-medium"
                       >
                         {tech}
                       </span>
