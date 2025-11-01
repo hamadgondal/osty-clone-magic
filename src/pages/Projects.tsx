@@ -24,13 +24,13 @@ const Projects = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const categories = ["All Categories", "Creative", "Design", "Photo", "Style"];
+  const categories = ["All Categories", "Mobile App", "Branding", "Web Application", "UX/UI"];
 
   const projects = [
     {
       id: 1,
       title: "The Dark Side",
-      category: "Creative",
+      category: "Mobile App",
       image: project1,
       images: [project1, project2, project3],
       client: "Dark Studios",
@@ -42,7 +42,7 @@ const Projects = () => {
     {
       id: 2,
       title: "Justice Robot",
-      category: "Design",
+      category: "Branding",
       image: project2,
       images: [project2, project4, project5],
       client: "Tech Innovations Inc",
@@ -54,7 +54,7 @@ const Projects = () => {
     {
       id: 3,
       title: "Color Current",
-      category: "Photo",
+      category: "Web Application",
       image: project3,
       images: [project3, project6, project1],
       client: "Flow Creative",
@@ -66,7 +66,7 @@ const Projects = () => {
     {
       id: 4,
       title: "Subsequent Sneeze",
-      category: "Creative",
+      category: "UX/UI",
       image: project4,
       images: [project4, project1, project2],
       client: "Wellness Brand Co",
@@ -78,7 +78,7 @@ const Projects = () => {
     {
       id: 5,
       title: "Abstract Dreams",
-      category: "Design",
+      category: "UX/UI",
       image: project5,
       images: [project5, project3, project6],
       client: "Dream Labs",
@@ -90,7 +90,7 @@ const Projects = () => {
     {
       id: 6,
       title: "Minimal Essence",
-      category: "Photo",
+      category: "Branding",
       image: project6,
       images: [project6, project2, project4],
       client: "Essence Studio",

@@ -10,19 +10,21 @@ import project6 from "@/assets/project-6.jpg";
 const PortfolioGrid = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const categories = ["All", "Creative", "Design", "Photo"];
+  const categories = ["All Categories", "Mobile App", "Branding", "Web Application", "UX/UI"];
 
   const projects = [
-    { id: 1, title: "The Dark Side", category: "Creative", image: project1 },
-    { id: 2, title: "Justice Robot", category: "Design", image: project2 },
-    { id: 3, title: "Color Current", category: "Photo", image: project3 },
-    { id: 4, title: "Subsequent Sneeze", category: "Creative", image: project4 },
-    { id: 5, title: "Abstract Dreams", category: "Design", image: project5 },
-    { id: 6, title: "Minimal Essence", category: "Photo", image: project6 },
+    { id: 1, title: "The Dark Side", category: "Mobile App", image: project1 },
+    { id: 2, title: "Justice Robot", category: "Branding", image: project2 },
+    { id: 3, title: "Color Current", category: "Web Application", image: project3 },
+    { id: 4, title: "Subsequent Sneeze", category: "UX/UI", image: project4 },
+    { id: 5, title: "Abstract Dreams", category: "Branding", image: project5 },
+    { id: 6, title: "Minimal Essence", category: "UX/UI", image: project6 },
   ];
 
   const filteredProjects =
-    activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter);
+    activeFilter === "All Categories"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <section className="py-20 px-6 bg-background">

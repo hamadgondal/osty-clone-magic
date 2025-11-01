@@ -11,7 +11,7 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "Home", href: "/", icon: Home },
-    { label: "Portfolio", href: "/projects", icon: Briefcase },
+    { label: "Projects", href: "/projects", icon: Briefcase },
     { label: "Services", href: "/services", icon: Settings },
     { label: "Contact", href: "/contact", icon: Mail },
   ];
