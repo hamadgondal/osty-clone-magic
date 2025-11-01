@@ -81,17 +81,15 @@ const PortfolioGrid = () => {
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-3xl bg-card shadow-lg aspect-[5/5]">
+                <div className="relative overflow-hidden rounded-3xl bg-card shadow-lg aspect-square">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-sm text-white/80">{project.category}</p>
-                    </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                    <h3 className="text-2xl font-bold mb-1 text-white">{project.title}</h3>
+                    <p className="text-sm text-white/80">{project.category}</p>
                   </div>
                 </div>
               </motion.div>
