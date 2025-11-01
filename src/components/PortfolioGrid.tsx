@@ -52,7 +52,7 @@ const PortfolioGrid = () => {
               onClick={() => setActiveFilter(category)}
               className={`px-6 py-2 rounded-xl text-sm font-medium transition-colors ${
                 activeFilter === category
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-foreground text-background"
                   : "bg-[hsl(0,0%,92.16%)] text-foreground hover:bg-primary hover:text-primary-foreground"
               }`}
             >

@@ -20,82 +20,88 @@ import project6 from "@/assets/project-6.jpg";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All Categories");
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const categories = ["All Categories", "Creative", "Design", "Photo", "Style"];
 
   const projects = [
-    { 
-      id: 1, 
-      title: "The Dark Side", 
-      category: "Creative", 
+    {
+      id: 1,
+      title: "The Dark Side",
+      category: "Creative",
       image: project1,
       images: [project1, project2, project3],
       client: "Dark Studios",
       year: "2024",
-      description: "A bold creative campaign that explores the darker side of modern design aesthetics. This project combines cutting-edge visual storytelling with immersive user experiences.",
-      technologies: ["React", "Three.js", "GSAP", "WebGL"]
+      description:
+        "A bold creative campaign that explores the darker side of modern design aesthetics. This project combines cutting-edge visual storytelling with immersive user experiences.",
+      technologies: ["React", "Three.js", "GSAP", "WebGL"],
     },
-    { 
-      id: 2, 
-      title: "Justice Robot", 
-      category: "Design", 
+    {
+      id: 2,
+      title: "Justice Robot",
+      category: "Design",
       image: project2,
       images: [project2, project4, project5],
       client: "Tech Innovations Inc",
       year: "2024",
-      description: "An innovative design system that brings robotics and justice together through powerful visual metaphors and interactive elements.",
-      technologies: ["Figma", "React", "Framer Motion", "TypeScript"]
+      description:
+        "An innovative design system that brings robotics and justice together through powerful visual metaphors and interactive elements.",
+      technologies: ["Figma", "React", "Framer Motion", "TypeScript"],
     },
-    { 
-      id: 3, 
-      title: "Color Current", 
-      category: "Photo", 
+    {
+      id: 3,
+      title: "Color Current",
+      category: "Photo",
       image: project3,
       images: [project3, project6, project1],
       client: "Flow Creative",
       year: "2023",
-      description: "A stunning photography series that captures the essence of color in motion, combining artistic vision with technical excellence.",
-      technologies: ["Photography", "Adobe Suite", "Color Grading"]
+      description:
+        "A stunning photography series that captures the essence of color in motion, combining artistic vision with technical excellence.",
+      technologies: ["Photography", "Adobe Suite", "Color Grading"],
     },
-    { 
-      id: 4, 
-      title: "Subsequent Sneeze", 
-      category: "Creative", 
+    {
+      id: 4,
+      title: "Subsequent Sneeze",
+      category: "Creative",
       image: project4,
       images: [project4, project1, project2],
       client: "Wellness Brand Co",
       year: "2023",
-      description: "A creative exploration of unexpected moments and their ripple effects, told through engaging visuals and interactive storytelling.",
-      technologies: ["React", "Animation", "Creative Direction"]
+      description:
+        "A creative exploration of unexpected moments and their ripple effects, told through engaging visuals and interactive storytelling.",
+      technologies: ["React", "Animation", "Creative Direction"],
     },
-    { 
-      id: 5, 
-      title: "Abstract Dreams", 
-      category: "Design", 
+    {
+      id: 5,
+      title: "Abstract Dreams",
+      category: "Design",
       image: project5,
       images: [project5, project3, project6],
       client: "Dream Labs",
       year: "2024",
-      description: "An abstract design project that pushes the boundaries of digital art and user interface design, creating dreamlike experiences.",
-      technologies: ["UI/UX Design", "React", "Canvas API", "WebGL"]
+      description:
+        "An abstract design project that pushes the boundaries of digital art and user interface design, creating dreamlike experiences.",
+      technologies: ["UI/UX Design", "React", "Canvas API", "WebGL"],
     },
-    { 
-      id: 6, 
-      title: "Minimal Essence", 
-      category: "Photo", 
+    {
+      id: 6,
+      title: "Minimal Essence",
+      category: "Photo",
       image: project6,
       images: [project6, project2, project4],
       client: "Essence Studio",
       year: "2023",
-      description: "A minimalist photography project that strips away the unnecessary to reveal the true essence of subjects through clean composition.",
-      technologies: ["Photography", "Minimalist Design", "Post-Production"]
+      description:
+        "A minimalist photography project that strips away the unnecessary to reveal the true essence of subjects through clean composition.",
+      technologies: ["Photography", "Minimalist Design", "Post-Production"],
     },
   ];
 
-  const handleProjectClick = (project: typeof projects[0]) => {
+  const handleProjectClick = (project: (typeof projects)[0]) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
     setIsDialogOpen(true);
@@ -103,28 +109,25 @@ const Projects = () => {
 
   const handleNextImage = () => {
     if (selectedProject) {
-      setCurrentImageIndex((prev) => 
-        prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      );
+      setCurrentImageIndex((prev) => (prev === selectedProject.images.length - 1 ? 0 : prev + 1));
     }
   };
 
   const handlePrevImage = () => {
     if (selectedProject) {
-      setCurrentImageIndex((prev) => 
-        prev === 0 ? selectedProject.images.length - 1 : prev - 1
-      );
+      setCurrentImageIndex((prev) => (prev === 0 ? selectedProject.images.length - 1 : prev - 1));
     }
   };
 
-  const filteredProjects = activeFilter === "All Categories" 
-    ? projects 
-    : projects.filter(p => p.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "All Categories"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       {/* Featured Work Section */}
       <section className="pt-32 py-20 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
@@ -135,12 +138,10 @@ const Projects = () => {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-              FEATURED WORK
-            </h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">FEATURED WORK</h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
-              Beautiful designs. Eye-catching interactions. Memorable experiences.
-              Development that delivers. Let the work do the talking.
+              Beautiful designs. Eye-catching interactions. Memorable experiences. Development that
+              delivers. Let the work do the talking.
             </p>
           </motion.div>
 
@@ -159,8 +160,8 @@ const Projects = () => {
                 onClick={() => setActiveFilter(category)}
                 className={`px-6 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeFilter === category
-                    ? "bg-foreground text-background"
-                    : "bg-[hsl(var(--button-base))] text-[hsl(var(--button-base-foreground))] hover:bg-[hsl(var(--button-hover))]"
+                    ? "bg-foreground text-background" // ACTIVE: Dark Background, Light Text (Correct)
+                    : "bg-[hsl(0,0%,92.16%)] text-foreground hover:bg-primary hover:text-primary-foreground" // UNSELECTED: Light Gray Background (Changed)
                 }`}
               >
                 {category}
@@ -211,14 +212,12 @@ const Projects = () => {
           {selectedProject && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-3xl font-bold">
-                  {selectedProject.title}
-                </DialogTitle>
+                <DialogTitle className="text-3xl font-bold">{selectedProject.title}</DialogTitle>
                 <DialogDescription className="text-lg">
                   {selectedProject.category} Project
                 </DialogDescription>
               </DialogHeader>
-              
+
               <div className="space-y-6">
                 <div className="relative aspect-video rounded-lg overflow-hidden group">
                   <img
@@ -226,7 +225,7 @@ const Projects = () => {
                     alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
                     className="w-full h-full object-cover"
                   />
-                  
+
                   {/* Navigation Arrows */}
                   {selectedProject.images.length > 1 && (
                     <>
@@ -246,7 +245,7 @@ const Projects = () => {
                       >
                         <ChevronRight className="h-6 w-6" />
                       </Button>
-                      
+
                       {/* Image Counter */}
                       <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-xl text-sm">
                         {currentImageIndex + 1} / {selectedProject.images.length}
@@ -276,7 +275,7 @@ const Projects = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-3">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
-                     {selectedProject.technologies.map((tech) => (
+                    {selectedProject.technologies.map((tech) => (
                       <span
                         key={tech}
                         className="px-4 py-2 bg-[hsl(var(--button-base))] text-[hsl(var(--button-base-foreground))] rounded-xl text-sm font-medium"

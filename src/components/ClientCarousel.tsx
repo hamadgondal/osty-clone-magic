@@ -1,21 +1,19 @@
 import { motion } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { Link } from "react-router-dom";
 
 const ClientCarousel = () => {
   const clients = [
-    "Adobe",
-    "Google",
-    "Microsoft",
-    "Apple",
-    "Amazon",
-    "Meta",
-    "Netflix",
-    "Tesla",
+    {
+      name: "HWI Dubai",
+      logo: null,
+      website: "http://www.healthworld-international.com/",
+    },
+    { name: "Indigo Oman", logo: null, website: "https://indigo-oman.com/" },
+    { name: "MK1 UAE", logo: null, website: "https://www.instagram.com/mk1_uae/" },
+    { name: "Al Mouj Muscat", logo: null, website: "https://www.almouj.com/en/" },
+    { name: "Omantel", logo: null, website: "https://www.omantel.om/" },
   ];
 
   return (
@@ -56,11 +54,28 @@ const ClientCarousel = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-8 flex items-center justify-center"
+                  className="p-8 flex items-center justify-center h-full"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-foreground/40 hover:text-foreground transition-colors">
-                    {client}
-                  </div>
+                  <Link
+                    to={client.website || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center h-full"
+                  >
+                    {client.logo ? (
+                      // 1. RENDER IMAGE (if client.logo exists)
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        className="max-w-full max-h-[80px] object-contain opacity-40 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    ) : (
+                      // 2. RENDER NAME (if client.logo does NOT exist)
+                      <div className="text-2xl md:text-lg font-bold text-foreground/40 hover:text-foreground transition-colors text-center">
+                        {client.name}
+                      </div>
+                    )}
+                  </Link>
                 </motion.div>
               </CarouselItem>
             ))}

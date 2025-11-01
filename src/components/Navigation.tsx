@@ -27,26 +27,23 @@ const Navigation = () => {
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
-      animate={{ 
-        y: 0, 
+      animate={{
+        y: 0,
         opacity: 1,
-        height: isScrolled ? "60px" : "80px"
+        height: isScrolled ? "60px" : "80px",
       }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 bg-[hsl(var(--header-footer))]/95 backdrop-blur-md border-b border-border"
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold tracking-tight"
-          >
-            irozon.
+          <motion.div whileHover={{ scale: 1.05 }} className="text-2xl font-bold tracking-tight">
+            <Link to="/">irozon.</Link>
           </motion.div>
 
           {/* Desktop/Tablet Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {menuItems.map((item) => (
+            {menuItems.map((item) =>
               item.href.startsWith("#") ? (
                 <motion.a
                   key={item.label}
@@ -66,7 +63,7 @@ const Navigation = () => {
                   </motion.span>
                 </Link>
               )
-            ))}
+            )}
           </div>
 
           {/* Mobile Menu */}
@@ -96,7 +93,6 @@ const Navigation = () => {
             </SheetContent>
           </Sheet>
         </div>
-
       </div>
     </motion.nav>
   );

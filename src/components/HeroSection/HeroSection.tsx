@@ -176,10 +176,9 @@ const HeroSection: React.FC = () => {
         <div className="hero-buttons mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <motion.button
             key="lets-talk-button"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate("/contact")}
-            className={`px-8 py-3 rounded-xl text-sm font-medium transition-all bg-primary text-primary-foreground`}
+            className={`px-8 py-3 rounded-xl text-sm font-medium transition-all bg-primary text-primary-foreground hover:bg-foreground hover:text-background`}
           >
             Lets Talk
           </motion.button>
