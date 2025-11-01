@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
+const WEB3FORMS_ACCESS_KEY = "6c821c85-39d2-41d6-bbad-22e2944ab1b8";
+
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -23,15 +25,45 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate email sending
-    setTimeout(() => {
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible.",
+    try {
+      const form = e.currentTarget as HTMLFormElement;
+      const data = new FormData(form);
+      data.append("access_key", WEB3FORMS_ACCESS_KEY);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
       });
-      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "✅ Message Sent!",
+          description: "We've received your message and will get back to you soon.",
+          variant: "default",
+        });
+        // Clear the form only on success
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        console.error("Web3Forms Error:", result);
+        toast({
+          title: "❌ Submission Failed",
+          description:
+            result.message || "There was an error sending your message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      toast({
+        title: "❌ Submission Failed",
+        description: "A network error occurred. Please check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -95,7 +127,7 @@ const Contact = () => {
                   <Label htmlFor="name">Name</Label>
                   <Input
                     id="name"
-                    name="name"
+                    name="name" // Important for FormData
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -108,7 +140,7 @@ const Contact = () => {
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
-                    name="email"
+                    name="email" // Important for FormData
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -122,7 +154,7 @@ const Contact = () => {
                   <Label htmlFor="subject">Subject</Label>
                   <Input
                     id="subject"
-                    name="subject"
+                    name="subject" // Important for FormData
                     value={formData.subject}
                     onChange={handleChange}
                     required
@@ -135,7 +167,7 @@ const Contact = () => {
                   <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
-                    name="message"
+                    name="message" // Important for FormData
                     value={formData.message}
                     onChange={handleChange}
                     required

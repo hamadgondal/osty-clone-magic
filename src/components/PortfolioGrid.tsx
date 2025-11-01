@@ -8,7 +8,7 @@ import project5 from "@/assets/project-5.jpg";
 import project6 from "@/assets/project-6.jpg";
 
 const PortfolioGrid = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All Categories");
 
   const categories = ["All Categories", "Mobile App", "Branding", "Web Application", "UX/UI"];
 
