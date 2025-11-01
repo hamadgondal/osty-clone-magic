@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --button-hover-foreground: 0 0% 98%;
 
     /* Header/Footer colors */
-    --header-footer: 0 0% 70%;
+    --header-footer: 0 0% 92%;
     --header-footer-foreground: 0 0% 98%;
 
     --primary: 164 97% 39%;
@@ -90,7 +90,7 @@ All colors MUST be HSL.
     --button-hover-foreground: 0 0% 98%;
 
     /* Header/Footer colors */
-    --header-footer: 0 0% 30%;
+    --header-footer: 0 0% 20%;
     --header-footer-foreground: 0 0% 98%;
 
     --primary: 164 97% 39%;
